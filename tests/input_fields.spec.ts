@@ -26,6 +26,14 @@ test('Edit the "cat" pet type', async ({page}) => {
   await test.step('4. Add assertion of the "Edit Pet Type" text displayed', async () => {
     await expect(page.getByRole('heading', {name: 'Edit Pet Type'})).toHaveText('Edit Pet Type')
   })
+
+  await test.step('5. Change the pet type name from "cat" to "rabbit" and click "Update" button', async () => {
+    const nameInput = page.locator('#name')
+    // wait for the form to load the current name before replacing it
+    await expect(nameInput).toHaveValue('cat')
+    await nameInput.fill('rabbit')
+    await page.getByRole('button', {name: 'Update'}).click()
+  })
 });
 
 
