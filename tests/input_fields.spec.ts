@@ -50,6 +50,10 @@ test('Edit the "cat" pet type', async ({page}) => {
     // wait until the app returns to the list, so the update is saved before the test ends
     await expect(page).toHaveURL('/pettypes')
   })
+
+  await test.step('9. Add the assertion that the first pet type in the list of names has a value "cat"', async () => {
+    await expect(page.locator('[name="pettype_name"]').first()).toHaveValue('cat')
+  })
 });
 
 
