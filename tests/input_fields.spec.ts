@@ -38,6 +38,11 @@ test('Edit the "cat" pet type', async ({page}) => {
   await test.step('6. Add the assertion that the first pet type in the list of types has a value "rabbit"', async () => {
     await expect(page.locator('[name="pettype_name"]').first()).toHaveValue('rabbit')
   })
+
+  await test.step('7. Click on "Edit" button for the same "rabbit" pet type', async () => {
+    await page.getByRole('row').filter({has: page.getByRole('cell', {name: 'rabbit', exact: true})}).getByRole('button', {name: 'Edit'}).click()
+    await expect(page.locator('#name')).toHaveValue('rabbit')
+  })
 });
 
 
