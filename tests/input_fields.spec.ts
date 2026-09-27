@@ -22,6 +22,10 @@ test('Edit the "cat" pet type', async ({page}) => {
   await test.step('3. Click on "Edit" button for the "cat" pet type', async () => {
     await page.getByRole('row').filter({has: page.getByRole('cell', {name: 'cat', exact: true})}).getByRole('button', {name: 'Edit'}).click()
   })
+
+  await test.step('4. Add assertion of the "Edit Pet Type" text displayed', async () => {
+    await expect(page.getByRole('heading', {name: 'Edit Pet Type'})).toHaveText('Edit Pet Type')
+  })
 });
 
 
