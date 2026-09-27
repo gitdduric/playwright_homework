@@ -43,6 +43,13 @@ test('Edit the "cat" pet type', async ({page}) => {
     await page.getByRole('row').filter({has: page.getByRole('cell', {name: 'rabbit', exact: true})}).getByRole('button', {name: 'Edit'}).click()
     await expect(page.locator('#name')).toHaveValue('rabbit')
   })
+
+  await test.step('8. Change the pet type name back from "rabbit" to "cat" and click "Update" button', async () => {
+    await page.locator('#name').fill('cat')
+    await page.getByRole('button', {name: 'Update'}).click()
+    // wait until the app returns to the list, so the update is saved before the test ends
+    await expect(page).toHaveURL('/pettypes')
+  })
 });
 
 
