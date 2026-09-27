@@ -34,6 +34,10 @@ test('Edit the "cat" pet type', async ({page}) => {
     await nameInput.fill('rabbit')
     await page.getByRole('button', {name: 'Update'}).click()
   })
+
+  await test.step('6. Add the assertion that the first pet type in the list of types has a value "rabbit"', async () => {
+    await expect(page.locator('[name="pettype_name"]').first()).toHaveValue('rabbit')
+  })
 });
 
 
